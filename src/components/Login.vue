@@ -1,8 +1,10 @@
 <template>
-    <div>
+    <div class="login">
         <h1>登录</h1>
-        <v-btn elevation="2" @click="signIn">点击登录</v-btn>
-        <v-btn elevation="2" @click="signOut">退出登录</v-btn>
+        <v-text-field v-model="username" label="用户名"></v-text-field>
+        <v-text-field v-model="password" label="密码" type="password"></v-text-field>
+        <v-btn color="primary" @click="signIn()">登录</v-btn>
+        <v-btn color="primary" text @click="goReister()">注册新用户</v-btn>
     </div>
 </template>
 
@@ -12,7 +14,6 @@ export default {
             return{
                 username:'',
                 password:'',
-                guid:0
             }
         },
     methods:{
@@ -23,16 +24,29 @@ export default {
             }
             this.$api.user.signIn(params).then(res=>{
                 console.log(res);
+                localStorage.setItem('token',res.data.data.token);
+                this.$router.push({
+                    name:'Index'
+                })
             })
         },
-        signOut(){
-            let params={
-                guid:this.guid
-            }
-            this.$api.user.signOut(params).then(res=>{
-                console.log(res);
+        goReister(){
+            this.$router.push({
+                name:'SignUp'
             })
         }
     }
 }
 </script>
+
+<style scoped>
+.login {
+        width: 400px;
+        text-align: center;
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top:10%;
+    };
+</style>

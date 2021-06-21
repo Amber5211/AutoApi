@@ -2,10 +2,10 @@ import axios from './http'
 
 const user = {
     signIn(params) {
-        return axios.post('/login', params)
+        return axios.post('/user/login', params)
     },
-    signOut(params) {
-        return axios.post('/loginout', params)
+    signUp(params) {
+        return axios.post('/user/reister', params)
     }
 }
 
