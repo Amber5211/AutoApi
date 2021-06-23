@@ -6,8 +6,11 @@ import router from './router'
 import api from '../src/api/api'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import { Notification } from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 
+Vue.prototype.$notify = Notification;
 Vue.prototype.$api = api
 Vue.config.productionTip = false
 Vue.use(Vuetify)

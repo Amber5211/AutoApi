@@ -4,7 +4,7 @@
         <v-text-field v-model="username" label="用户名"></v-text-field>
         <v-text-field v-model="password" label="密码" type="password"></v-text-field>
         <v-btn color="primary" @click="signIn()">登录</v-btn>
-        <v-btn color="primary" text @click="goReister()">注册新用户</v-btn>
+        <v-btn color="primary" text @click="$router.push('/SignUp')">注册新用户</v-btn>
     </div>
 </template>
 
@@ -25,14 +25,14 @@ export default {
             this.$api.user.signIn(params).then(res=>{
                 console.log(res);
                 localStorage.setItem('token',res.data.data.token);
+                this.$notify({
+                    title: '成功',
+                    message: '登录成功',
+                    type: 'success'
+                })
                 this.$router.push({
                     name:'Index'
                 })
-            })
-        },
-        goReister(){
-            this.$router.push({
-                name:'SignUp'
             })
         }
     }

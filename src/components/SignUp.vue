@@ -6,7 +6,7 @@
         <v-text-field v-model="password" label="密码" type="password"></v-text-field>
         <v-text-field v-model="email" label="邮箱" type="email"></v-text-field>
         <v-btn color="primary" @click="signUp()">注册</v-btn>
-        <v-btn color="primary" text @click="refundLogin">返回登录页面</v-btn>
+        <v-btn color="primary" text @click="$router.push('/login')">返回登录页面</v-btn>
     </div>
 </template>
 
@@ -25,18 +25,18 @@ export default {
                 userName:this.username,
                 password:this.password,
                 email:this.email
-            }
+            };
             this.$api.user.signUp(params)
             .then(res=>{
                 console.log(res);
+                this.$notify({
+                    title: '成功',
+                    message: '注册成功',
+                    type: 'success'
+                })
                 this.$router.push({
                     name:'Login'
                 })
-            })
-        },
-        refundLogin(){
-            this.$router.push({
-                name:'Login'
             })
         }
     }
