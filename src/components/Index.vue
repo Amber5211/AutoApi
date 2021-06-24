@@ -7,6 +7,7 @@
         <v-tab>用例管理</v-tab>
         <v-tab>任务管理</v-tab>
         <v-tab>报告管理</v-tab>
+        <v-tab>测试管理</v-tab>
     </v-tabs>
     </v-app-bar>
     </div>
